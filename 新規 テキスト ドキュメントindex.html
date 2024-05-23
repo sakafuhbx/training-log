@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>トレーニング記録</title>
+</head>
+<body>
+    <h1>トレーニング記録</h1>
+    <form id="training-form">
+        <label for="date">日付:</label>
+        <input type="date" id="date" name="date" required><br>
+        
+        <label for="exercise">エクササイズ名:</label>
+        <input type="text" id="exercise" name="exercise" required><br>
+        
+        <label for="sets">セット数:</label>
+        <input type="number" id="sets" name="sets" required><br>
+        
+        <label for="weight">重量 (kg):</label>
+        <input type="number" id="weight" name="weight" required><br>
+        
+        <label for="reps">回数:</label>
+        <input type="number" id="reps" name="reps" required><br>
+        
+        <label for="notes">備考:</label>
+        <textarea id="notes" name="notes"></textarea><br>
+        
+        <button type="submit">送信</button>
+    </form>
+    <div id="records">
+        <h2>記録一覧</h2>
+        <ul id="records-list"></ul>
+    </div>
+    <script>
+        document.getElementById('training-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const date = document.getElementById('date').value;
+            const exercise = document.getElementById('exercise').value;
+            const sets = document.getElementById('sets').value;
+            const weight = document.getElementById('weight').value;
+            const reps = document.getElementById('reps').value;
+            const notes = document.getElementById('notes').value;
+            
+            const record = document.createElement('li');
+            record.textContent = `${date} - ${exercise} - ${sets}セット - ${weight}kg - ${reps}回 - ${notes}`;
+            document.getElementById('records-list').appendChild(record);
+            
+            document.getElementById('training-form').reset();
+        });
+    </script>
+</body>
+</html>
